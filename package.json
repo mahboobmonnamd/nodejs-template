@@ -4,11 +4,23 @@
   "description": "",
   "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "husky install",
+    "lint": "npm run format:check && eslint .",
+    "lint:fix": "npm run format && eslint . --fix",
+    "format:check": "prettier --check \"**/*.{json,css,scss,md,html,ts}\"",
+    "format": "prettier --write \"**/*.{json,css,scss,md,html,ts}\"",
+    "build": "tsc",
+    "build:watch": "tsc -w"
   },
   "keywords": [],
   "author": "Mahboob",
   "license": "ISC",
+  "lint-staged": {
+    "*.{ts, tsx}": [
+      "npm run format",
+      "eslint --cache --fix"
+    ]
+  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
@@ -21,6 +33,16 @@
     "@types/body-parser": "^1.19.2",
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.9.0",
+    "@typescript-eslint/parser": "^5.9.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-markdown": "^2.2.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.5",
     "nodemon": "^2.0.15",
