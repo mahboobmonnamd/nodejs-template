@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  api:
+    build: 
+      context: ./
+      dockerfile: dev.Dockerfile
+      args:
+        - someValue
+    command: ['npm', 'run', 'dev']
+    restart: on-failure
+    volumes:
+      - ./build:/app/build:delegated
+    depends_on:
+      - api-watch
+    ports:
+      - 8002:8002
+  
+  api-watch:
+    build: 
+      context: ./
+      dockerfile: dev.Dockerfile
+      args:
+        - someValue
+    command: ['npm', 'run', 'dev']
+    restart: on-failure
+    volumes:
+      - ./build:/app/build:delegated
+      - ./src:/app/src:delegated
+    logging:
+      options:
+        max-size: 20m
