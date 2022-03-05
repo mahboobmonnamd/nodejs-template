@@ -12,7 +12,7 @@
     "build": "tsc",
     "build:watch": "tsc -w",
     "dev": "nodemon build/index.js",
-    "dev:ts": "nodemon --exec ts-node src/index.ts"
+    "dev:ts": "nodemon --exec 'node --inspect=0.0.0.0:9229 --require ts-node/register src/index.ts'"
   },
   "keywords": [],
   "author": "Mahboob",
